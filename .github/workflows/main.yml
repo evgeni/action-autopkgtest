@@ -1,0 +1,21 @@
+name: CI
+
+on:
+  - push
+  - pull_request
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    container: debian:sid
+    steps:
+      - uses: actions/checkout@v3
+      - name: get hello package
+        run: |
+          sed -i '/Types:/ s/$/ deb-src/' /etc/apt/sources.list.d/debian.sources
+          apt-get update
+          apt-get source --download-only hello
+      - name: run autopkgtest
+        uses: ./
+        with:
+          package: 'hello_*.dsc'
