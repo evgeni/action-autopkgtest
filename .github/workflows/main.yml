@@ -15,7 +15,8 @@ jobs:
           sed -i '/Types:/ s/$/ deb-src/' /etc/apt/sources.list.d/debian.sources
           apt-get update
           apt-get source --download-only hello
+          apt-get download hello
       - name: run autopkgtest
         uses: ./
         with:
-          package: 'hello_*.dsc'
+          package: 'hello_*.deb hello_*.dsc'
