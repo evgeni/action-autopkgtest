@@ -1,0 +1,19 @@
+name: 'Run autopkgtest'
+author: 'Evgeni Golov'
+description: 'Run autopkgtest on a Debian package'
+inputs:
+  package:
+    description: 'The package to run autopkgtest on'
+    default: '*.changes'
+  base-image:
+    description: 'The base-image to run autopkgtest in'
+    default: 'debian:sid'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.package }}
+    - ${{ inputs.base-image }}
+branding:
+  icon: 'package'
+  color: 'purple'
