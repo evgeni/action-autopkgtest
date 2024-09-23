@@ -1,6 +1,6 @@
 FROM debian:sid
 
-RUN apt-get update && apt-get install -y --no-install-recommends autopkgtest autodep8 docker.io docker-cli
+RUN apt-get update && apt-get install -y --no-install-recommends autopkgtest autodep8 docker.io docker-cli iproute2
 
 COPY entrypoint.sh /entrypoint.sh
 
